@@ -41,50 +41,50 @@ knex migrate:make students(migration_name)
 exports.up = knex migrate:latest
 exports.down = knex migrate:rollback
 
- // - exports.up = function(knex, Promise) {
-    return knex.schema.createTable("orders", (orders) => {
-      orders.increments("id")
-      orders.string("date")
-      orders.string("time")
-      orders.string("delivery_date")
-      orders.string("delivery_window")
-      orders.string("productsTablejoin")
-      orders.integer("cust_acct").references("id").inTable("users").onDelete("CASCADE")
-      orders.integer("dist_acct").references("id").inTable("users").onDelete("CASCADE")
-    }) 
-  }
+//  exports.up = function(knex, Promise) {
+//     return knex.schema.createTable("orders", (orders) => {
+//       orders.increments("id")
+//       orders.string("date")
+//       orders.string("time")
+//       orders.string("delivery_date")
+//       orders.string("delivery_window")
+//       orders.string("productsTablejoin")
+//       orders.integer("cust_acct").references("id").inTable("users").onDelete("CASCADE")
+//       orders.integer("dist_acct").references("id").inTable("users").onDelete("CASCADE")
+//     }) 
+//   }
   
-  exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists("orders")
-  } - //
+//   exports.down = function(knex, Promise) {
+//     return knex.schema.dropTableIfExists("orders")
+//   } 
   
 
   *SEEDS 
 
 knex seed:make 01_students
 
-// -- 
-  
-exports.seed = function(knex, Promise) {
-  // Deletes ALL existing entries
-  return knex('orders').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('orders').insert([
-        {
-          date: "11-19-1449",
-          time: "1855",
-          delivery_date: "08-85-1200",
-          delivery_window: "0400",
-          productsTablejoin: "This will be where we join the products from the table" ,
-          dist_acct: 1,
-          cust_acct: 2,
-        }
-      ]);
-    });
-};
 
-- // 
+  
+// exports.seed = function(knex, Promise) {
+//   // Deletes ALL existing entries
+//   return knex('orders').del()
+//     .then(function () {
+//       // Inserts seed entries
+//       return knex('orders').insert([
+//         {
+//           date: "11-19-1449",
+//           time: "1855",
+//           delivery_date: "08-85-1200",
+//           delivery_window: "0400",
+//           productsTablejoin: "This will be where we join the products from the table" ,
+//           dist_acct: 1,
+//           cust_acct: 2,
+//         }
+//       ]);
+//     });
+// };
+
+
 
 knex seed:run
 
@@ -115,36 +115,34 @@ module.exports = connection
 
 Create a file called queries.js containing the following: 
 
-// - 
+
 const db = require("./database-connection")
 
-module.exports = {
+// module.exports = {
     
-    listAll() {
-        return db("orders")
-    },
-    createOrder(createOrder) {
-        return db("orders")
-        .insert(createOrder)
-        .returning("*")
-    },
-    deleteOrder(id) {
-        return db("orders")
-        .where("id",id)
-        .delete()
-    },
-    getById(id) {
-        return db("orders").where("id", id)
-    },
-    updateOrder(id, orders) {
-        return db("orders")
-          .where('id', id)
-          .update(orders)
-          .returning('*')
-      }
-}
-
- -// 
+//     listAll() {
+//         return db("orders")
+//     },
+//     createOrder(createOrder) {
+//         return db("orders")
+//         .insert(createOrder)
+//         .returning("*")
+//     },
+//     deleteOrder(id) {
+//         return db("orders")
+//         .where("id",id)
+//         .delete()
+//     },
+//     getById(id) {
+//         return db("orders").where("id", id)
+//     },
+//     updateOrder(id, orders) {
+//         return db("orders")
+//           .where('id', id)
+//           .update(orders)
+//           .returning('*')
+//       }
+// }
  
  Add queries.js as a dependency for app.js 
 
