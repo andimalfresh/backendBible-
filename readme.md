@@ -1,3 +1,7 @@
+This repo is for referencing the basic steps to set up a Database using PostgreSQL and Knex
+
+
+
 // This is the Backend bible (for knex: created by Jimmy Liang, sequelize to be added later) 
 
 *App initialization:
